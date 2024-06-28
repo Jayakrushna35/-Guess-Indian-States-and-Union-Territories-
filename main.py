@@ -25,10 +25,7 @@ while len(guessed_states) < 29 :
         j.goto(int(state_data.X), int(state_data.Y))
         j.write(answer_state)
     if answer_state == "Exit":
-        missing_states = []
-        for state in all_states:
-            if state not in guessed_states:
-                missing_states.append(state)
+        missing_states = [state for state in all_states if state not in guessed_states]
         df = pd.DataFrame(missing_states)
         df.to_csv("state to learn.csv")       
         break
